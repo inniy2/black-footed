@@ -9,9 +9,12 @@ User=testuser
 Group=testuser
 PIDFile=/tmp/foo.pid
 ExecStart=/usr/bin/python /home/testuser/black-footed/schedule-test.py
-#Restart=always
-#TimeoutStartSec=10
-#RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=test-err
+Restart=always
+TimeoutStartSec=10
+RestartSec=10
 
 
 
