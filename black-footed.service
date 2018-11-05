@@ -1,17 +1,17 @@
 [Unit]
-Description=Python daemon
+Description=black-footed
 After=syslog.target
 After=network.target
 
 [Service]
 Type=simple
-User=testuser
-Group=testuser
-PIDFile=/tmp/black-footed.pid
-ExecStart=/usr/bin/python /home/testuser/black-footed/schedule-test.py
+User=root
+Group=root
+PIDFile=/run/black-footed/black-footed.pid
+ExecStart=/usr/bin/python /home/testuser/black-footed/black-footed.py
 StandardOutput=syslog
 StandardError=syslog
-SyslogIdentifier=test-err
+SyslogIdentifier=black-footed
 Restart=always
 TimeoutStartSec=10
 RestartSec=10
