@@ -40,15 +40,20 @@ def create_dir():
 
 # Function run full backup
 def run_full_backup():
-    print("I am doing full backup ...")
-    sys.stdout.flush()
     os.makedirs(config['default']['local_destination_dir']+"/"+working_dir)
+    print("I am doing full backup ...")
     print(config['default']['local_destination_dir']+"/"+working_dir + " has been created.")
     sys.stdout.flush()
-    open(config['default']['local_destination_dir']+"/"+working_dir+"/test1", 'a').close()
-    open(config['default']['local_destination_dir']+"/"+working_dir+"/test2", 'a').close()
-    os.makedirs(config['default']['local_destination_dir']+"/"+working_dir+"/data2")
-    open(config['default']['local_destination_dir']+"/"+working_dir+"/data2/test2", 'a').close()
+
+    p=subprocess.Popen(config['percona']['innobackupex']+
+    " --defaults-file="+config['mysql']['defaults_file']+
+    " --backup    --compress    --slave-info"+
+    " --compress-threads="+config['mysql']['compress_threads']+
+    " --user="+config['mysql']['user']+
+    " --password="+config['mysql']['password']+
+    " --socket="+config['mysql']['socket']+
+    " "+config['default']['local_destination_dir']+"/"+working_dir, shell=True)
+
     time.sleep(120)
 
 

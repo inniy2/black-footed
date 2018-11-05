@@ -7,6 +7,17 @@ backup_interval_minute=1
 local_destination_dir=/tmp/.backup
 remote_access_method=copy
 
+[mysql]
+user=root
+password=bigS3cret!!
+socket=/var/lib/mysql/mysql.sock
+port=3306
+defaults_file=/etc/my.cnf
+compress_threads=4
+
+[percona]
+innobackupex=/usr/bin/innobackupex
+
 [copy]
 remote_destination_dir=/tmp/mount/.backup
 retention_day_for_copy=0
@@ -17,4 +28,6 @@ retention_minute_for_copy=10
 ssh_user=testuser
 remote_destination_host=
 remote_destination_dir=
-retention_day_for_ssh=1
+retention_day_for_ssh=
+retention_hour_for_ssh=
+retention_minute_for_ssh=
